@@ -1,0 +1,106 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using eshop.Data
+@using eshop.Models
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - eshop</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/eshop.styles.css" asp-append-version="true" />
+
+    <link rel="stylesheet" href="~/css/main-style.css">
+    @*<style src="~/css/main-style.css">
+        
+    </style>*@
+    <style>
+        .dropbtn {
+            background-color: inherit;
+            color: white;
+            font-size: 150%;
+            text-align: center;
+            border: none;
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: inherit;
+            color: white;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+
+        .dropdown-content a {
+            color: white;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+        
+        .dropdown-content a:hover {
+            color: lightblue;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div>
+            <h1>Welcome to our eshop!</h1>
+            <nav>
+                <a asp-controller="Home" asp-action="Index">All products</a>
+
+                <div class="dropdown">
+                    <button class="dropbtn">Categories</button>
+                    <div class="dropdown-content">
+                        <a asp-controller="Categories" asp-action="Index" asp-route-category="guitars">Guitars</a>
+                        <a asp-controller="Categories" asp-action="Index" asp-route-category="keyboards">Keyboards</a>
+                    </div>
+                </div>
+
+                <a asp-controller="Checkout" asp-action="Index">Checkout</a>
+
+                    <div class="dropdown">
+                        <button class="dropbtn">Admin panel</button>
+                        <div class="dropdown-content">
+                            <a asp-controller="Admin" asp-action="CRUD" asp-route-category="guitars">Guitars</a>
+                            <a asp-controller="Admin" asp-action="CRUD" asp-route-category="keyboards">Keyboards</a>
+                        </div>
+                    </div>
+
+                <partial name="_LoginPartial" />
+            </nav>
+        </div>@*
+        <div class="custom-shape-divider-top-1662513322">
+            <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" class="shape-fill"></path>
+            </svg>
+        </div>*@
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

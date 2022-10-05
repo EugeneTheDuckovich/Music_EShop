@@ -1,0 +1,33 @@
+﻿@model Instrument[]
+@{
+    ViewData["Title"] = "GuitarsCRUD";
+}
+
+<h1>Guitars Admin Panel</h1>
+
+<div>
+    <form method="get" asp-controller="Admin" asp-action="CreateGuitar">
+        <input type="submit" value="create new guitar" />
+    </form>
+</div>
+
+<ul>
+
+    @foreach (var item in Model)
+    {
+        <li>
+            <div>
+                <img width="200" height="240" src="~/images/@(item.Id.ToString()).jpg" />
+                <a asp-controller="Details" asp-action="Index" asp-route-id="@item.Id">
+                    @item.BriefDescription @item.Producer @item.Model
+                </a>
+
+                <form method="post" asp-controller="Admin" asp-action="DeleteGuitar" asp-route-id="@item.Id">
+                    <input type="submit" value="delete" />
+                </form>
+
+                <p>@item.Price $</p>
+            </div>
+        </li>
+    }
+</ul>

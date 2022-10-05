@@ -1,0 +1,59 @@
+@model Instrument[]
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>The music shop</title>
+    <meta lang="EN"></meta>
+    <meta charset="UTF-8"></meta>
+  </head>
+  <body>
+    
+    <section id="categories">
+      <h2>Categories</h2>
+      <ul>
+            <li>
+                <a asp-controller="Categories" asp-action="Index" asp-route-category="guitars">
+                    <img width="200" height="200" src="~/images/guitars.jpg" />
+                    Guitars
+                </a>
+            </li>
+            <li>
+                <a asp-controller="Categories" asp-action="Index" asp-route-category="keyboards"> 
+                <img width="200" height="200" src="~/images/guitars.jpg" />
+                    Pianos
+                </a>
+            </li>
+      </ul>
+    </section>
+    <hr />
+    <section id="all-products">
+      <h2>Products</h2>
+        <ul >
+            @{
+                foreach (var item in Model)
+                {
+                    <li>
+                        <div>
+                            <a asp-controller="Details" asp-action="Index" asp-route-id="@item.Id">
+                                <img width="200" height="240" src="~/images/@(item.Id.ToString()).jpg" />
+                                @item.BriefDescription @item.Producer @item.Model
+                            </a>      
+                            
+                            <p>@item.Price $</p>
+                        </div>
+                    </li>
+                }
+            }
+        @*<li><img width="200" height="240" src="~/images/guitar2.jpg" /><p>Wooden Guitar</p></li>
+        <li><img width="200" height="240" src="~/images/piano2.jpg" /><p>Classical piano</p></li>
+        <li><img width="200" height="240" src="~/images/cello.jpg" /><p>Cello</p></li>
+        <li><img width="200" height="240" src="~/images/keyboard1.jpg" /><p>Keyboard</p></li>
+        <li><img width="200" height="240" src="~/images/guitar3.jpg" /><p>Acoustic guitar</p></li>
+        <li><img width="200" height="240" src="~/images/piano5.jpg" /><p>Piano</p></li>
+        <li><img width="200" height="240" src="~/images/piano7.jpg" /><p>High grade piano</p></li>*@
+        </ul>
+    </section>
+    <footer></footer>
+  </body>
+</html>

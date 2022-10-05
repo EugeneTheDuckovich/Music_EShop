@@ -1,0 +1,29 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using eshop.Data
+@using eshop.Models
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+<link rel="stylesheet" href="~/css/main-style.css">
+
+<ul class="navbar-nav">
+    @if (SignInManager.IsSignedIn(User))
+    {
+        <li class="nav-item">
+            <a asp-action="Index" asp-controller="Home">Hello @User.Identity.Name!</a>
+        </li>
+        <li class="nav-item">
+            <form class="form-inline" method="post" asp-action="LogOut" asp-controller="Account">
+                <button type="submit">Logout</button>
+            </form>
+        </li>
+    }
+    else
+    {
+        <li class="nav-item">
+            <a asp-action="Register" asp-controller="Account">Register</a>
+        </li>
+        <li class="nav-item">
+            <a asp-action="Login" asp-controller="Account" asp-route-returnUrl="/Home/Index">Login</a>
+        </li>
+    }
+</ul>

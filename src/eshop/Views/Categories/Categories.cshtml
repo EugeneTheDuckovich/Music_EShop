@@ -1,0 +1,121 @@
+﻿@model Instrument[]
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>The music shop</title>
+    <meta lang="EN"></meta>
+    <meta charset="UTF-8"></meta>
+    <style>
+        .custom-shape-divider-top-1662513322 {
+            position: absolute;
+            z-index: -1;
+            top: 0;
+            left: 0;
+            width: 100%;
+            overflow: hidden;
+            line-height: 0;
+        }
+
+            .custom-shape-divider-top-1662513322 svg {
+                position: relative;
+                display: block;
+                width: calc(235% + 1.3px);
+                height: 359px;
+            }
+
+            .custom-shape-divider-top-1662513322 .shape-fill {
+                fill: #313;
+            }
+
+        header {
+            position: relative;
+            z-index: 0;
+            height: 200px;
+        }
+
+        body {
+            margin: 0;
+            background-color: #505;
+            color: white;
+        }
+
+        section {
+            margin: 15px;
+        }
+
+        ul {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            list-style: none;
+        }
+
+        li {
+            width: 200px;
+            margin-right: 10px;
+            margin-left: 10px;
+        }
+
+            li > p {
+                margin: 0px;
+                text-align: center;
+            }
+
+        header h1 {
+            display: inline;
+            width: fit-content;
+            margin: 0px;
+            font-size: 60px;
+            color: white;
+        }
+
+        header nav {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-evenly;
+        }
+
+        header a {
+            text-decoration: none;
+            color: white;
+            font-size: 25px;
+        }
+    </style>
+</head>
+<body>
+    <hr />
+    <section id="all-products">
+        @if (Model == null || Model.Length == 0) 
+        {
+            <h2>no instruments i this category</h2>
+        }
+        else if( Model[0].Guitar != null)
+        {
+            <h2>Guitars</h2>
+        }
+        else
+        {
+            <h2>Pianos</h2>
+        }
+        <ul>
+            @{
+                foreach (var item in Model)
+                {
+                    <li>
+                        <div>
+                            <a asp-controller="Details" asp-action="Index" asp-route-id="@item.Id">
+                                <img width="200" height="240" src="~/images/@(item.Id.ToString()).jpg" />
+                                @item.BriefDescription @item.Producer @item.Model
+                            </a>
+
+                            <p>@item.Price $</p>
+                        </div>
+                    </li>
+                }
+            }
+        </ul>
+    </section>
+    <footer></footer>
+</body>
+</html>

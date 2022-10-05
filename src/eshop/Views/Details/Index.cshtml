@@ -1,0 +1,48 @@
+@model Instrument
+
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<h3>Details</h3>
+<h3>
+    @if(Model.Guitar != null)
+    {
+        <text>Guitar</text>
+    }
+    else if(Model.Keyboard != null)
+    {
+        <text>Keyboard</text>
+    }
+</h3>
+<div>
+    <form asp-controller="Cart" asp-action="AddItem" asp-method="get" asp-route-id="@Model.Id">
+       <label>Producer</label>
+       <p>@Model.Producer</p>
+       <label>Model</label>
+       <p>@Model.Model</p>
+       <label>Type</label>
+       <p>@Model.BriefDescription</p>
+       <label>Price</label>
+       <p>@Model.Price</p>
+       @if(Model.Guitar != null)
+       {
+           <label>Number of strings</label>
+           <p>@Model.Guitar.NumberOfStrings</p>
+           <label>Body material</label>
+           <p>@Model.Guitar.BodyMaterial</p>
+           <label>Deck material</label>
+           <p>@Model.Guitar.DeckMaterial</p>
+       }
+       @if(Model.Keyboard != null)
+       {
+           <label>Number of octaves</label>
+           <p>@Model.Keyboard.NumberOfOctaves</p>
+           <label>Material</label>
+           <p>@Model.Keyboard.Material</p>
+       }
+       <input type="submit" value="Add to cart" />
+    </form>
+</div>
